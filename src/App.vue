@@ -13,8 +13,8 @@ export default {
 <style>
 html, body {
   background: #f0f0f0;
-  overflow: hidden;
   margin: 0;
   padding: 0;
+  /*overflow: hidden;*/
 }
 </style>

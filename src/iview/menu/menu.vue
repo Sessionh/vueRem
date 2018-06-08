@@ -33,12 +33,13 @@
       <div style="height:40px;border-bottom: 1px solid gold">
 
       </div>
-      <div style=" padding: 10px;height: 100%;overflow: auto">
+      <div style=" padding: 10px;height: 100%;">
 
         <div>
-          <card>
-            <Table stripe :columns="columns1" :data="data1" :height="height"></Table>
-          </card>
+          <Table stripe :columns="columns1" :data="data1" :height="height"></Table>
+          <!--<card>-->
+            <!--<Table stripe :columns="columns1" :data="data1" :height="height"></Table>-->
+          <!--</card>-->
         </div>
       </div>
     </div>

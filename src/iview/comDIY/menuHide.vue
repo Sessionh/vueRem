@@ -1,8 +1,8 @@
 <template>
-  <ul style="text-align: center;z-index: 2">
+  <ul style="text-align: center;z-index: 2;">
     <li v-for="items in menuHideList" :key="items.name" style="margin-top: 15px;">
       <Dropdown   placement="right-start">
-        <span  @click="liSpanClick()">
+        <span  @click="liSpanClick()" style="color: #eeeeee;margin-right: 20px;cursor:pointer">
           <Icon :type="items.icon" size="22" style="color: #e9eaec;cursor:pointer"></Icon>
         </span>
         <DropdownMenu slot="list">
