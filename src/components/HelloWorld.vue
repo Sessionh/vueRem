@@ -1,54 +1,43 @@
-<style scoped>
-  .layout {
-
+<style lang="less" scoped>
+  .headerDiv {
+    /*display: inline;*/
   }
-  .layout-header {
-    color: #fff;
+  .arrowLeft {
+    /*display: inline;*/
+    display: none;
+  }
+  .icon {
+    cursor:pointer;
+  }
+  .father:hover  .arrowLeft{
+    display: inline;
   }
 </style>
 <template>
-  <div class="layout">
-
-    <Layout class="layout-main">
-      <Sider hide-trigger>
-        <Menu theme="dark"  active-name="1-2" :open-names="['1']">
-          <Submenu name="2">
-            <template slot="title">
-              <Icon type="ios-filing"></Icon>
-              1级菜单-1
-            </template>
-            <MenuItem name="2-1">2级-子菜单1</MenuItem>
-            <MenuItem name="2-2">2级-子菜单2</MenuItem>
-            <Submenu name="3">
-              <template slot="title">3级-子菜单</template>
-              <MenuItem name="3-1">3级-子菜单-2</MenuItem>
-              <MenuItem name="3-2">3级-子菜单-3</MenuItem>
-            </Submenu>
-          </Submenu>
-          <Submenu name="4">
-            <template slot="title">
-              <Icon type="ios-gear"></Icon>
-              1级菜单-2
-            </template>
-            <MenuItem name="4-1">2级菜单-01</MenuItem>
-            <MenuItem name="4-2">2级菜单-02</MenuItem>
-          </Submenu>
-        </Menu>
-      </Sider>
-
-      <Layout>
-        <Header>
-          <div class="layout-header">hello heder</div>
-        </Header>
-        <Content>Content</Content>
-      </Layout>
-    </Layout>
+  <div>
+    <div class="father" style="width: 40px;">
+      <Icon class="icon" type="funnel" size="22"></Icon>
+      <div class="arrowLeft">
+        <arrow-left>
+          <ul style="list-style-type: none;padding: 8px">
+            <li><a href="">菜单- 1111</a></li>
+            <li>菜单- 2222</li>
+            <li>菜单- 3333</li>
+            <li>菜单- 4444</li>
+            <li>菜单- 5555</li>
+            <li>菜单- 6666</li>
+          </ul>
+        </arrow-left>
+      </div>
+    </div>
   </div>
-
-
 </template>
 <script>
+  import arrowLeft from '../iview/comDIY/arrowLeft';
   export default {
+    components: {
+      arrowLeft
+    }
 
   }
 </script>
