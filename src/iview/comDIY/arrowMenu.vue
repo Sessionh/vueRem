@@ -16,10 +16,10 @@
 </style>
 <template>
   <div>
-    <div class="father" style="width: 60px;height:40px; ">
-      <span class="icon">点餐开始</span>
+    <div class="father" style="width: 40px;height:40px; background-color: #47cb89">
+      <Icon class="icon" type="funnel" size="22"></Icon>
       <div class="arrowLeft">
-        <arrow-left :menuLeft="menuLeft">
+        <arrow-left>
           <slot></slot>
         </arrow-left>
       </div>
@@ -31,11 +31,6 @@
   export default {
     components: {
       arrowLeft
-    },
-    data () {
-      return {
-        menuLeft: '60px'
-      }
     }
 
   }
