@@ -41,15 +41,19 @@
     -webkit-transition: transform .25s ease-in ; /* Safari 和 Chrome */
     -o-transition: transform .25s ease-in ; /* Opera */
   }
+  .boxDiv {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .1) inset,
+      0 0 5px 2px rgba(0, 0, 0, .1);
+  }
 
 </style>
 <template>
   <div class="main">
-    <div class="main-left" :style="{width: (rotateIcon === 'rotateIcon' ? '40px': '180px')}">
+    <div class="main-left" :style="{width: (rotateIcon === 'rotateIcon' ? '60px': '180px')}">
       <menu-sum v-show="rotateIcon === 'rotate'" :menuList="menuList" style="margin-top: 40px;"></menu-sum>
-      <menu-hide v-show="rotateIcon !== 'rotate'" :menuHideList="menuList"  style="margin-top: 40px"></menu-hide>
+      <menu-hide v-show="rotateIcon !== 'rotate'" :menuHideList="menuList"  style="margin-top: 40px;"></menu-hide>
     </div>
-    <div class="main-right" :style="{marginLeft: (rotateIcon === 'rotateIcon' ? '40px': '180px')}">
+    <div class="main-right" :style="{marginLeft: (rotateIcon === 'rotateIcon' ? '60px': '180px')}">
       <div style="background: #FFFFFF;height: 60px">
         <div style="width: 320px;padding-top: 15px">
           <Row >
@@ -70,8 +74,8 @@
         </div>
 
       </div>
-      <div style="height: 40px;border-bottom: 1px solid gold">
-
+      <div class="boxDiv" style="height: 40px;">
+        <tag-main></tag-main>
       </div>
       <div class="content" :style="{height: heightContent}">
         <Card>
@@ -87,10 +91,12 @@
 <script>
   import menuHide from '../comDIY/menuHide';
   import menuSum from '../comDIY/menuSum';
+  import tagMain from '../comDIY/tagMain';
   export default {
     components: {
       menuHide,
-      menuSum
+      menuSum,
+      tagMain
     },
     data () {
         return {
@@ -99,87 +105,126 @@
           shrink: '200px',
           menuList: [
             {
-              path: '/demo1',
-              icon: 'android-warning',
-              name: 'demo1',
-              title: '菜单一级-1',
+              path: '/user',
+              icon: 'gear-b',
+              name: 'user',
+              title: '系统管理',
+              component: 'Main',
               children: [
                 {
-                  path: '/demo1-1',
-                  icon: 'android-warning',
-                  name: 'demo1-1',
-                  title: '菜单1-1级',
-                  component: 'jax/resource/alarmManage',
-                  children: []
-                },
-                {
-                  path: '/demo1-2',
-                  icon: 'android-warning',
-                  name: 'demo1-2',
-                  title: '菜单1-2级',
-                  component: 'jax/resource/alarmManage',
-                  children: []
-                },
-                {
-                  path: '/demo1-3',
-                  icon: 'android-warning',
-                  name: 'demo1-3',
-                  title: '菜单1-3级',
-                  component: 'jax/resource/alarmManage',
+                  path: '/userName',
+                  icon: 'person-add',
+                  name: 'userName',
+                  title: '用户管理',
+                  access: 0,
+                  component: 'jax/user/user',
                   children: [
                     {
-                      path: '/demo1-3-1',
-                      name: 'demo1-3-1',
-                      title: '菜单1-3-1级',
-                      component: 'jax/resource/alarmManage'
+                      path: '/userName',
+                      icon: 'person-add',
+                      name: 'userName',
+                      title: '用户管理',
+                      component: 'jax/user/user'
                     },
                     {
-                      path: '/demo1-3-2',
-                      name: 'demo1-3-2',
-                      title: '菜单1-3-2级',
-                      component: 'jax/resource/alarmManage'
-                    },
-                    {
-                      path: '/demo1-3-3',
-                      name: 'demo1-3-3',
-                      title: '菜单1-3-3级',
-                      component: 'jax/resource/alarmManage'
+                      path: '/app',
+                      icon: 'battery-full',
+                      name: 'app',
+                      title: '权限管理',
+                      component: 'jax/app/app'
                     }
                   ]
                 },
-
-              ]
-            },
-            {
-              path: '/demo2',
-              icon: 'help-buoy',
-              name: 'demo2',
-              title: '菜单一级-2',
-              children: [
                 {
-                  path: '/demo2-1',
-                  icon: 'android-warning',
-                  name: 'demo2-1',
-                  title: '菜单2-1级',
-                  component: 'jax/resource/alarmManage',
-                  children: []
+                  path: '/app',
+                  icon: 'battery-full',
+                  name: 'app',
+                  title: '权限管理',
+                  component: 'jax/app/app'
+                },
+                {
+                  path: '/appRoles',
+                  icon: 'person',
+                  name: 'appRoles',
+                  title: '角色管理',
+                  component: 'jax/app/appRoles'
+                },
+                {
+                  path: '/hostHistory',
+                  icon: 'nuclear',
+                  name: 'hostHistory',
+                  title: '系统审计',
+                  component: 'jax/user/hostHistory'
                 }
               ]
             },
             {
-              path: '/demo3',
-              icon: 'lock-combination',
-              name: 'demo-3',
-              title: '菜单一级-3',
+              path: '/user',
+              icon: 'gear-b',
+              name: 'user1',
+              title: '系统管理',
+              component: 'Main',
               children: [
                 {
-                  path: '/demo3-1',
-                  icon: 'android-warning',
-                  name: 'demo3-1',
-                  title: '菜单3-1级',
-                  component: 'jax/resource/alarmManage',
-                  children: []
+                  path: '/userName',
+                  icon: 'person-add',
+                  name: 'userName',
+                  title: '用户管理',
+                  component: 'jax/user/user',
                 },
+                {
+                  path: '/app',
+                  icon: 'battery-full',
+                  name: 'app',
+                  title: '权限管理',
+                  component: 'jax/app/app',
+                  children: [
+                    {
+                      path: '/userName',
+                      icon: 'person-add',
+                      name: 'userName',
+                      title: '用户管理',
+                      component: 'jax/user/user'
+                    },
+                    {
+                      path: '/app',
+                      icon: 'battery-full',
+                      name: 'app',
+                      title: '权限管理',
+                      component: 'jax/app/app'
+                    }
+                  ]
+                },
+                {
+                  path: '/appRoles',
+                  icon: 'person',
+                  name: 'appRoles',
+                  title: '角色管理',
+                  component: 'jax/app/appRoles',
+                  children: [
+                    {
+                      path: '/userName',
+                      icon: 'person-add',
+                      name: 'userName',
+                      title: '用户管理2',
+                      component: 'jax/user/user'
+                    },
+                    {
+                      path: '/app',
+                      icon: 'battery-full',
+                      name: 'app',
+                      title: '权限管理2',
+                      component: 'jax/app/app'
+                    }
+                  ]
+                },
+                {
+                  path: '/hostHistory',
+                  icon: 'nuclear',
+                  name: 'hostHistory',
+                  title: '系统审计',
+                  component: 'jax/user/hostHistory'
+                }
               ]
             }
           ],

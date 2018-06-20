@@ -1,14 +1,14 @@
 <style lang="less" scoped>
   .headerDiv {
-    /*display: inline;*/
   }
   .arrowLeft {
-    /*display: inline;*/
     display: none;
-    margin-top: 20px;
+    position: absolute;
+    left: 55px;
   }
   .icon {
     cursor:pointer;
+    width: 50px;
   }
   .father:hover  .arrowLeft{
     display: inline;
@@ -16,10 +16,12 @@
 </style>
 <template>
   <div>
-    <div class="father" style="width: 40px;height:40px; background-color: #47cb89">
-      <Icon class="icon" type="funnel" size="22"></Icon>
+    <div class="father" style="width: 50px;">
+      <span class="icon">
+        <Icon  type="funnel" size="22"></Icon>
+      </span>
       <div class="arrowLeft">
-        <arrow-left>
+        <arrow-left :menuLeft="menuLeft">
           <slot></slot>
         </arrow-left>
       </div>
@@ -31,6 +33,17 @@
   export default {
     components: {
       arrowLeft
+    },
+    props: {
+      menuLeft: {
+        type: String,
+        default: '100px'
+      }
+    },
+    data () {
+      return {
+
+      }
     }
 
   }

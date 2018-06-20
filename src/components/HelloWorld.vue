@@ -1,77 +1,184 @@
 <style lang="less" scoped>
+  .mainMenu {
+    position: relative;
+    z-index: 30;
+  }
 
 </style>
 <template>
   <div>
-    <ul>
-      <li style="">
-        <arrow-menu>
-          <ul style="list-style-type: none;padding: 8px">
-            <li><a href="">菜单- 1111</a></li>
-            <li>菜单- 2222</li>
-            <li>菜单- 3333</li>
-            <li>菜单- 4444</li>
-            <li>菜单- 5555</li>
-            <li>
-            </li>
-
-          </ul>
-        </arrow-menu>
-      </li>
-      <li style="">
-        <arrow-menu>
-          <ul style="list-style-type: none;padding: 8px">
-            <li><a href="">菜单- 11112</a></li>
-            <li>菜单- 22222</li>
-            <li>菜单- 33332</li>
-            <li>菜单- 44442</li>
-            <li>菜单- 55552</li>
-            <li>菜单- 6666</li>
-          </ul>
-        </arrow-menu>
-      </li>
-      <li style="">
-        <menu-sum>
-          <ul style="list-style-type: none;padding: 8px">
-            <li><a href="">菜单- 1111</a></li>
-            <li>菜单- 2222</li>
-            <li>菜单- 3333</li>
-            <li>菜单- 4444</li>
-            <li>菜单- 5555</li>
-            <li>菜单- 6666</li>
-          </ul>
-        </menu-sum>
-      </li>
-      <li style="">
-        <menu-sum>
-          <ul style="list-style-type: none;padding: 8px">
-            <li><a href="">菜单- 11112</a></li>
-            <li>菜单- 22222</li>
-            <li>菜单- 33332</li>
-            <li>菜单- 44442</li>
-            <li>菜单- 55552</li>
-            <li>菜单- 6666</li>
-          </ul>
-        </menu-sum>
-      </li>
-    </ul>
-
-    <ul>
-
-    </ul>
-
+    <div class="mainMenu">
+      <menu-sum :menuSumList="menuList"></menu-sum>
+    </div>
+    <div>
+      <tag-main></tag-main>
+    </div>
   </div>
 </template>
 <script>
-  import arrowMenu from '../iview/comDIY/arrowMenu';
   import arrowLeft from '../iview/comDIY/arrowLeft';
+  import menuHope from '../iview/comDIY/menuHope';
   import menuSum from '../iview/comDIY/menuSum';
+  import TagMenu from '../iview/comDIY/tagMenu';
+  import TagMain from '../iview/comDIY/tagMain';
   export default {
     components: {
-      arrowMenu,
       arrowLeft,
-      menuSum
+      menuHope,
+      menuSum,
+      TagMenu,
+      TagMain
+    },
+    data () {
+      return {
+        button: 'button',
+        transfer: false,
+        menuList: [
+          {
+            path: '/user',
+            icon: 'gear-b',
+            name: 'user',
+            title: '系统管理',
+            access: 0,
+            component: 'Main',
+            children: [
+              {
+                path: '/userName',
+                icon: 'person-add',
+                name: 'userName',
+                title: '用户管理',
+                access: 0,
+                component: 'jax/user/user',
+                children: [
+                  {
+                    path: '/userName',
+                    icon: 'person-add',
+                    name: 'userName',
+                    title: '用户管理',
+                    access: 0,
+                    component: 'jax/user/user'
+                  },
+                  {
+                    path: '/app',
+                    icon: 'battery-full',
+                    name: 'app',
+                    title: '权限管理',
+                    access: 0,
+                    component: 'jax/app/app'
+                  }
+                ]
+              },
+              {
+                path: '/app',
+                icon: 'battery-full',
+                name: 'app',
+                title: '权限管理',
+                access: 0,
+                component: 'jax/app/app'
+              },
+              {
+                path: '/appRoles',
+                icon: 'person',
+                name: 'appRoles',
+                title: '角色管理',
+                access: 0,
+                component: 'jax/app/appRoles'
+              },
+              {
+                path: '/hostHistory',
+                icon: 'nuclear',
+                name: 'hostHistory',
+                title: '系统审计',
+                access: 0,
+                component: 'jax/user/hostHistory'
+              }
+            ]
+          },
+          {
+            path: '/user',
+            icon: 'gear-b',
+            name: 'user',
+            title: '系统管理',
+            access: 0,
+            component: 'Main',
+            children: [
+              {
+                path: '/userName',
+                icon: 'person-add',
+                name: 'userName',
+                title: '用户管理',
+                access: 0,
+                component: 'jax/user/user',
+              },
+              {
+                path: '/app',
+                icon: 'battery-full',
+                name: 'app',
+                title: '权限管理',
+                access: 0,
+                component: 'jax/app/app',
+                children: [
+                  {
+                    path: '/userName',
+                    icon: 'person-add',
+                    name: 'userName',
+                    title: '用户管理',
+                    access: 0,
+                    component: 'jax/user/user'
+                  },
+                  {
+                    path: '/app',
+                    icon: 'battery-full',
+                    name: 'app',
+                    title: '权限管理',
+                    access: 0,
+                    component: 'jax/app/app'
+                  }
+                ]
+              },
+              {
+                path: '/appRoles',
+                icon: 'person',
+                name: 'appRoles',
+                title: '角色管理',
+                access: 0,
+                component: 'jax/app/appRoles',
+                children: [
+                  {
+                    path: '/userName',
+                    icon: 'person-add',
+                    name: 'userName',
+                    title: '用户管理2',
+                    access: 0,
+                    component: 'jax/user/user'
+                  },
+                  {
+                    path: '/app',
+                    icon: 'battery-full',
+                    name: 'app',
+                    title: '权限管理2',
+                    access: 0,
+                    component: 'jax/app/app'
+                  }
+                ]
+              },
+              {
+                path: '/hostHistory',
+                icon: 'nuclear',
+                name: 'hostHistory',
+                title: '系统审计',
+                access: 0,
+                component: 'jax/user/hostHistory'
+              }
+            ]
+          }
+        ]
+      }
+    },
+    methods: {
+
     }
+
 
   }
 </script>

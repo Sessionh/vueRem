@@ -1,40 +1,71 @@
 <style lang="less" scoped>
-  .headerDiv {
-    /*display: inline;*/
+  .menuSum {
+    width: 130px;
+    height: 30px;
+    text-align: left;
   }
-  .arrowLeft {
-    /*display: inline;*/
+  .menuLeft {
+    position: relative;
+    cursor: pointer;
+  }
+  .menuArrowLeft {
     display: none;
-    margin-top: 20px;
+    position: absolute;
+    left: 150px;
   }
-  .icon {
-    cursor:pointer;
-  }
-  .father:hover  .arrowLeft{
+
+  .menuSum:hover .menuArrowLeft {
     display: inline;
   }
+  .menu ul li {
+    height: 30px;
+    color: #657180;
+  }
+  .menu ul li:hover {
+    color: goldenrod;
+    cursor: pointer;
+  }
+  .menu ul:first-child {
+    margin-top: 5px
+  }
+
 </style>
 <template>
   <div>
-    <div class="father" style="width: 60px;height:40px; ">
-      <span class="icon">点餐开始</span>
-      <div class="arrowLeft">
-        <arrow-left :menuLeft="menuLeft">
-          <slot></slot>
-        </arrow-left>
-      </div>
-    </div>
+    <Menu width="auto" active-name="1-2" :open-names="['1']" mode="vertical" theme="dark" v-for="item in menuList" :key="item.name">
+      <Submenu  :name="item.name">
+        <template slot="title">
+          <Icon :type="item.icon"></Icon>
+          {{item.title}}
+        </template>
+          <MenuItem v-if="items.children === undefined || items.children.length === 0" v-for="items in item.children"  :key="items.name" :name="items.name">{{items.title}}</MenuItem>
+          <Submenu v-if="items.children !== undefined && items.children.length > 0" v-for="items in item.children"  :key="items.name" :name="items.name">
+            <template slot="title">{{items.title}}</template>
+            <MenuItem v-for="itemSub in items.children" :name="itemSub.name" :key="itemSub.name">{{itemSub.title}}</MenuItem>
+          </Submenu>
+
+      </Submenu>
+
+    </Menu>
   </div>
+
+
 </template>
 <script>
-  import arrowLeft from './arrowLeft';
   export default {
     components: {
-      arrowLeft
+
+    },
+    props: {
+      menuList: {
+        type: Array,
+        default: []
+      },
+      menuWidth: 'auto'
     },
     data () {
       return {
-        menuLeft: '60px'
+
       }
     }
 
