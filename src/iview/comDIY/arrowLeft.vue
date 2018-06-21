@@ -2,7 +2,7 @@
   .arrow {
     display:inline-block;
     position:relative;
-    background-color:#ffffff;
+    background-color: rgba(0,0,0,.5);
     padding: 10px 25px 10px 25px;
     color: #CCC;
     text-align:center;
@@ -15,7 +15,7 @@
     height:0;
     border-width:8px 10px 10px 0;
     border-style:solid;
-    border-color:transparent #ffffff transparent transparent;/*透明 灰 透明 透明 */
+    border-color:transparent rgba(0,0,0,.5) transparent transparent;/*透明 灰 透明 透明 */
     position: absolute;
     left: -10px;
     top: 9px;

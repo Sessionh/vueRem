@@ -19,7 +19,7 @@
   }
   .menu ul li {
     height: 30px;
-    color: #657180;
+    color: #fff;
   }
   .menu ul li:hover {
     color: goldenrod;

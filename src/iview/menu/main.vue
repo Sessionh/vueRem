@@ -19,6 +19,7 @@
   .content {
     padding: 10px;
     overflow: auto;
+    height: 300px;
   }
   .menuPickUp {
     cursor: pointer;
@@ -78,6 +79,10 @@
         <tag-main></tag-main>
       </div>
       <div class="content" :style="{height: heightContent}">
+        <!--<keep-alive :include="TagList">-->
+          <!--<router-view></router-view>-->
+        <!--</keep-alive>-->
+
         <Card>
           <Table stripe :columns="columns1" :data="data1" :height="height"></Table>
         </Card>
@@ -100,6 +105,7 @@
     },
     data () {
         return {
+          TagList: [],
           heightContent: '500px',
           rotateIcon: 'rotate',
           shrink: '200px',

@@ -39,7 +39,7 @@
     <div class="main">
       <div ref="scrollCon" @DOMMouseScroll="handleScroll" @mousewheel="handleScroll" class="scrollBody">
         <div  ref = "scrollBody"  class="scrollDiv" :style="{left: tagBodyLeft + 'px'}">
-          <Tag v-for="item in TagList" type="dot" :key="item" closable>{{item}}</Tag>
+          <Tag v-for="item in TagList" type="dot" :key="item" closable :color="TagColor === item ? 'yellow': ''">{{item}}</Tag>
         </div>
       </div>
     </div>
@@ -48,6 +48,7 @@
   export default {
     data () {
       return {
+        TagColor: '标签1',
         transfer: true,
         tagBodyLeft: 0,
         TagList: ['标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8','标签9','标签10','标签11','标签12','标签13']
