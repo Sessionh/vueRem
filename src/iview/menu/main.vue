@@ -66,7 +66,7 @@
             </Col>
             <Col span="20">
               <Breadcrumb>
-                <BreadcrumbItem>Home</BreadcrumbItem>
+                <BreadcrumbItem>Home1</BreadcrumbItem>
                 <BreadcrumbItem>Components</BreadcrumbItem>
                 <BreadcrumbItem>Layout</BreadcrumbItem>
               </Breadcrumb>
