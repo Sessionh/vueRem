@@ -1,16 +1,39 @@
 import Vue from 'vue';
 const app = {
   state: {
+    tagList: ['首页','标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8','标签9','标签10','标签11','标签12','标签13'],
     cachePage: [],
-    currentPageName: ''
+    tagColor: '首页'
   },
   mutations: {
-    setTagsList (state, list) {
-      state.cachePage.push(...list);
+    setTagList (state, list) {
+      // state.cachePage.push(...list);
+      state.tagList = list;
+    },
+    // 关闭全部标签
+    closeAllTagList(state) {
+      state.tagList=  ['首页'];
+      state.tagColor = '首页';
+    },
+    // 关闭其他标签
+    closeCurrentTag(state) {
+      let result = ['首页'];
+      let tag = state.tagColor;
+      console.log(tag);
+      if (tag !== '首页') {
+        state.tagList.forEach(res => {
+          if (res === tag ) {
+            result.push(tag);
+          }
+        });
+        state.tagList = result;
+      } else {
+        state.tagList = ['首页'];
+      }
     },
     // 设置切换tag 高亮
-    setCurrentPageName (state, name) {
-      state.currentPageName = name;
+    setTagColor (state, name) {
+      state.tagColor = name;
     },
     // 动态添加主界面路由，需要缓存
     updateAppRouter (state, routes) {

@@ -39,7 +39,15 @@
     <div class="main">
       <div ref="scrollCon" @DOMMouseScroll="handleScroll" @mousewheel="handleScroll" class="scrollBody">
         <div  ref = "scrollBody"  class="scrollDiv" :style="{left: tagBodyLeft + 'px'}">
-          <Tag v-for="item in TagList" type="dot" :key="item" closable :color="TagColor === item ? 'yellow': ''">{{item}}</Tag>
+          <Tag v-for="item in tagList" type="dot"
+               :key="item"
+               :name="item"
+               :closable="item !== '首页'"
+               :color="tagColor === item ? 'yellow': ''"
+               @click.native="clickTag(item)"
+               @on-close="closeTag"
+
+          >{{item}}</Tag>
         </div>
       </div>
     </div>
@@ -48,10 +56,16 @@
   export default {
     data () {
       return {
-        TagColor: '标签1',
         transfer: true,
-        tagBodyLeft: 0,
-        TagList: ['标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8','标签9','标签10','标签11','标签12','标签13']
+        tagBodyLeft: 0
+      }
+    },
+    computed: {
+      tagColor () {
+        return this.$store.state.app.tagColor;
+      },
+      tagList () {
+        return this.$store.state.app.tagList;
       }
     },
     methods: {
@@ -76,6 +90,40 @@
           }
         }
         this.tagBodyLeft = left;
+      },
+      // 点击标签 事件
+      clickTag (name) {
+        this.$store.commit('setTagColor', name);
+      },
+      // 关闭标签
+      closeTag (event, name) {
+        if (this.tagBodyLeft < -100) {
+          this.tagBodyLeft = this.tagBodyLeft + 100;
+        } else if (this.tagBodyLeft < 0 && this.tagBodyLeft > -100) {
+          this.tagBodyLeft = 0;
+        }
+        let colorName = this.$store.state.app.tagColor;
+        let TagList = this.$store.state.app.tagList;
+        let result = [];
+        TagList.forEach((res, i) => {
+          if (res !== name) {
+            result.push(res);
+          } else {
+            if (colorName === res) {
+              console.log(res);
+              if (i > 0) {
+                this.$store.commit('setTagColor', TagList[i-1]);
+              } else {
+                this.$store.commit('setTagColor', TagList[i+1]);
+              }
+            }
+          }
+        });
+        this.$store.commit('setTagList', result)
+      },
+      // 初始化 标签 左边距
+      setTagBodyLeft () {
+        this.tagBodyLeft = 0;
       }
     },
     created () {

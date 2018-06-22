@@ -41,7 +41,7 @@
 <template>
   <div style="position: relative;">
     <div>
-      <tag-menu></tag-menu>
+      <tag-menu ref="tags"></tag-menu>
     </div>
     <div class="menuTagHide" @mouseleave="butMouseOut">
       <Button @mouseenter.native="butMouseOver"   type="primary" size="small">
@@ -50,7 +50,7 @@
       </Button>
       <div style="background: #ffffff;">
         <ul ref="uls"  class="uls" @mouseleave.native="butMouseOut" style="list-style-type: none;display: none;">
-          <li class="spanTag" @click="spanTagClick(1)">关闭当前</li>
+          <li class="spanTag" @click="spanTagClick(1)">关闭其他</li>
           <li class="spanTag1" @click="spanTagClick(2)">关闭所有</li>
         </ul>
       </div>
@@ -78,10 +78,13 @@
         this.$refs.uls.style.display = 'none'
       },
       spanTagClick (val) {
-        console.log(val);
+        if (val === 1) {
+          this.$store.commit('closeCurrentTag');
+        } else {
+          this.$store.commit('closeAllTagList');
+        }
+        this.$refs.tags.setTagBodyLeft();
       }
     }
-
-
   }
 </script>

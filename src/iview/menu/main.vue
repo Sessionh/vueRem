@@ -18,8 +18,8 @@
   }
   .content {
     padding: 10px;
-    overflow: auto;
-    height: 300px;
+    overflow-x: hidden;
+
   }
   .menuPickUp {
     cursor: pointer;
@@ -286,8 +286,8 @@
       }
     },
     created(){
-      let  docHei = document.documentElement.clientHeight -100 ;
-      this.height = document.documentElement.clientHeight -160 ;
+      let  docHei = document.documentElement.clientHeight -100 ; // div 高度
+      this.height = document.documentElement.clientHeight -160 ; // 内容高度
       this.heightContent = docHei + 'px';
     }
 
