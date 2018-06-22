@@ -79,9 +79,9 @@
         <tag-main></tag-main>
       </div>
       <div class="content" :style="{height: heightContent}">
-        <!--<keep-alive :include="TagList">-->
-          <!--<router-view></router-view>-->
-        <!--</keep-alive>-->
+        <keep-alive :include="TagList">
+          <router-view></router-view>
+        </keep-alive>
 
         <Card>
           <Table stripe :columns="columns1" :data="data1" :height="height"></Table>
