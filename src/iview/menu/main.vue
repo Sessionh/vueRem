@@ -83,9 +83,7 @@
           <router-view></router-view>
         </keep-alive>
 
-        <Card>
-          <Table stripe :columns="columns1" :data="data1" :height="height"></Table>
-        </Card>
+
       </div>
 
     </div>
@@ -105,7 +103,7 @@
     },
     data () {
         return {
-          TagList: [],
+          TagList: ['main'],
           heightContent: '500px',
           rotateIcon: 'rotate',
           shrink: '200px',
@@ -234,47 +232,6 @@
               ]
             }
           ],
-          height: '200',
-          columns1: [
-            {
-              title: 'Name',
-              key: 'name'
-            },
-            {
-              title: 'Age',
-              key: 'age'
-            },
-            {
-              title: 'Address',
-              key: 'address'
-            }
-          ],
-          data1: [
-            {
-              name: 'John Brown',
-              age: 18,
-              address: 'New York No. 1 Lake Park',
-              date: '2016-10-03',
-            },
-            {
-              name: 'Jim Green',
-              age: 24,
-              address: 'London No. 1 Lake Park',
-              date: '2016-10-01'
-            },
-            {
-              name: 'Joe Black',
-              age: 30,
-              address: 'Sydney No. 1 Lake Park',
-              date: '2016-10-02'
-            },
-            {
-              name: 'Jon Snow',
-              age: 26,
-              address: 'Ottawa No. 2 Lake Park',
-              date: '2016-10-04'
-            }
-          ]
         }
       },
     computed: {
@@ -287,7 +244,7 @@
     },
     created(){
       let  docHei = document.documentElement.clientHeight -100 ; // div 高度
-      this.height = document.documentElement.clientHeight -160 ; // 内容高度
+      // this.height = document.documentElement.clientHeight -160 ; // 内容高度
       this.heightContent = docHei + 'px';
     }
 

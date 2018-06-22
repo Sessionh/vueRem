@@ -32,7 +32,7 @@
 </style>
 <template>
   <div>
-    <Menu width="auto" active-name="1-2" :open-names="['1']" mode="vertical" theme="dark" v-for="item in menuList" :key="item.name">
+    <Menu width="auto" active-name="1-2" :open-names="['1']" @on-select="onSelectMenu" mode="vertical" theme="dark" v-for="item in menuList" :key="item.name">
       <Submenu  :name="item.name">
         <template slot="title">
           <Icon :type="item.icon"></Icon>
@@ -66,6 +66,14 @@
     data () {
       return {
 
+      }
+    },
+    methods: {
+      onSelectMenu (name) {
+        console.log(name);
+        this.$router.push({
+          name: 'emails'
+        });
       }
     }
 
