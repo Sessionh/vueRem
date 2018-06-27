@@ -54,6 +54,7 @@
 
 <script>
   import img from './images/logins22.jpg';
+  import util from './router/util';
   export default {
     data () {
       const validateUser = (rule, value, callback) => {
@@ -123,16 +124,20 @@
           if (valid) {
             this.userName = '';
             this.password = '';
-            this.$router.push({
-              name: 'home'
-            });
-
+            localStorage.setItem('userName', 'admin');
+            this.getMenu();
           } else {
             if (this.loginOn >= 3) {
               this.demo();
             }
           }
         });
+      },
+      getMenu () {
+          util.getRouterChildren(this);
+          this.$router.push({
+            name: 'home'
+          });
       },
       demo () {
         let code;

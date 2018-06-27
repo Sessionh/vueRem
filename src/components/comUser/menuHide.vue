@@ -36,7 +36,7 @@
       <li v-for="item in menuHideList" style="margin-top: 10px;">
         <menu-hope class="menu" :iconType="item.icon">
           <ul  style="list-style-type: none;" v-for="items in item.children" :key="items.name">
-            <li v-if="items.children === undefined || items.children.length === 0">{{items.title}}</li>
+            <li v-if="items.children === undefined || items.children.length === 0" @click="menuClick(items)">{{items.title}}</li>
 
             <li v-if="items.children !== undefined && items.children.length > 0">
               <div class="menuSum">
@@ -44,7 +44,7 @@
                 <div class="menuArrowLeft">
                   <arrow-left>
                     <ul  style="list-style-type: none;">
-                      <li v-for="itemSub in items.children">{{itemSub.title}}</li>
+                      <li v-for="itemSub in items.children" @click="menuClick(itemSub)">{{itemSub.title}}</li>
                     </ul>
                   </arrow-left>
                 </div>
@@ -74,6 +74,16 @@
       return {
         menuLeft: '60px',
         iconType: 'chatbox-working'
+      }
+    },
+    methods: {
+      menuClick (val) {
+        let tag = {name: val.title, path: val.name}; // 封装 Tag 对象
+        this.$store.commit('setTag', tag);
+        this.$router.push({
+          name: val.name
+        });
+
       }
     }
 

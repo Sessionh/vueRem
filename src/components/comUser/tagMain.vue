@@ -79,9 +79,9 @@
       },
       spanTagClick (val) {
         if (val === 1) {
-          this.$store.commit('closeCurrentTag');
+         this.$store.commit('closeCurrentTag');
         } else {
-          this.$store.commit('closeAllTagList');
+          this.$store.commit('closeAllTagList', this);
         }
         this.$refs.tags.setTagBodyLeft();
       }

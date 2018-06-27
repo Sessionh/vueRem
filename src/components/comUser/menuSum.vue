@@ -33,15 +33,15 @@
 <template>
   <div>
     <Menu width="auto" active-name="1-2" :open-names="['1']" @on-select="onSelectMenu" mode="vertical" theme="dark" v-for="item in menuList" :key="item.name">
-      <Submenu  :name="item.name">
+      <Submenu  :name="item.title">
         <template slot="title">
           <Icon :type="item.icon"></Icon>
           {{item.title}}
         </template>
-          <MenuItem v-if="items.children === undefined || items.children.length === 0" v-for="items in item.children"  :key="items.name" :name="items.name">{{items.title}}</MenuItem>
-          <Submenu v-if="items.children !== undefined && items.children.length > 0" v-for="items in item.children"  :key="items.name" :name="items.name">
+          <MenuItem v-if="items.children === undefined || items.children.length === 0" v-for="items in item.children"  :key="items.name" :name="items.title + ',' + items.name">{{items.title}}</MenuItem>
+          <Submenu v-if="items.children !== undefined && items.children.length > 0" v-for="items in item.children"  :key="items.name" :name="items.title">
             <template slot="title">{{items.title}}</template>
-            <MenuItem v-for="itemSub in items.children" :name="itemSub.name" :key="itemSub.name">{{itemSub.title}}</MenuItem>
+            <MenuItem v-for="itemSub in items.children" :name="itemSub.title + ',' + itemSub.name" :key="itemSub.name">{{itemSub.title}}</MenuItem>
           </Submenu>
 
       </Submenu>
@@ -71,8 +71,10 @@
     methods: {
       onSelectMenu (name) {
         console.log(name);
+        let data = name.split(',');
+        this.$store.commit('setTag', {name: data[0], path: data[1]});
         this.$router.push({
-          name: 'emails'
+          name: data[1]
         });
       }
     }

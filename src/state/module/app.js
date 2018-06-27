@@ -1,53 +1,72 @@
 import Vue from 'vue';
+import util from '../../router/util';
+import router from '@/router/index';
 const app = {
   state: {
-    tagList: ['首页','标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8','标签9','标签10','标签11','标签12','标签13'],
+    tagList: [{name:'首页', path: 'homes'}], //Tag 标签
     cachePage: [],
-    tagColor: '首页'
+    tagColor: '首页',
+    menuList: [], // 菜单
+    keepMenuList: ['appRoles'], // 缓存路由
   },
   mutations: {
+    // 添加菜单
+    setMenu (state, list) {
+      state.menuList = list;
+    },
     setTagList (state, list) {
       // state.cachePage.push(...list);
+     let menus =  util.setMenuList(list);
+      state.tagList = menus;
+    },
+    setTag (state, data) {
+      let count = 0;
+      state.tagList.forEach(res => {
+        if (res.name === data.name) {
+          count++;
+        }
+      });
+      if (count === 0) {
+        state.tagList.push(data);
+      }
+      state.tagColor = data.name;
+
+    },
+    // 关闭单个标签
+    closeTag (state, list) {
       state.tagList = list;
     },
     // 关闭全部标签
-    closeAllTagList(state) {
-      state.tagList=  ['首页'];
+    closeAllTagList(state, vm) {
+      state.tagList=  [{name:'首页', path: 'homes'}];
       state.tagColor = '首页';
+      vm.$router.push({ // 切换到首页 路由
+        name: 'homes'
+      })
     },
     // 关闭其他标签
     closeCurrentTag(state) {
-      let result = ['首页'];
+      let result = [{name:'首页', path: 'homes'}];
       let tag = state.tagColor;
-      console.log(tag);
       if (tag !== '首页') {
         state.tagList.forEach(res => {
-          if (res === tag ) {
-            result.push(tag);
+          if (res.name === tag ) {
+            result.push(res);
           }
         });
         state.tagList = result;
       } else {
-        state.tagList = ['首页'];
+        state.tagList = [{name:'首页', path: 'homes'}];
       }
     },
     // 设置切换tag 高亮
     setTagColor (state, name) {
       state.tagColor = name;
     },
-    // 动态添加主界面路由，需要缓存
-    updateAppRouter (state, routes) {
-      state.routers.push(...routes);
-      router.addRoutes(routes);
-    },
-    // 动态添加全局路由，不需要缓存
+    // 动态添加全局路由
     updateDefaultRouter (state, routes) {
       router.addRoutes(routes);
     },
-    // 接受前台数组，刷新菜单
-    updateMenulist (state, routes) {
-      state.menuList = routes;
-    }
   }
 };
 
