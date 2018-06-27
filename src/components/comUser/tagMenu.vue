@@ -97,11 +97,11 @@
         this.$router.push({
           name:  data.path
         });
+        this.$store.commit('setMenuPath', data.path);
       },
       // 关闭标签
       closeTag (val) {
         let name = val.name;
-        console.log(val);
         if (this.tagBodyLeft < -100) {
           this.tagBodyLeft = this.tagBodyLeft + 100;
         } else if (this.tagBodyLeft < 0 && this.tagBodyLeft > -100) {
@@ -120,8 +120,10 @@
                 this.$router.push({
                   name:  TagList[i-1].path
                 });
+                this.$store.commit('setMenuPath', TagList[i-1].path);
               } else {
                 this.$store.commit('setTagColor', TagList[i+1].name);
+                this.$store.commit('setMenuPath', TagList[i+1].path);
                 this.$router.push({
                   name:  TagList[i+1].path
                 });

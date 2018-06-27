@@ -65,13 +65,13 @@ util.getRouterChildren = function (vm) {
             if (val.children !== undefined && val.children !== null) {
               if (val.children.length > 0) {
                 val.children.forEach(data => {
-                  menu[0].children.push({name: data.name, path: data.path, component: req(data.component)});
+                  menu[0].children.push({name: data.name, path: data.path, component: req(data.component), title: data.title});
                 });
               } else {
-                menu[0].children.push({name: val.name, path: val.path,component: req(val.component)});
+                menu[0].children.push({name: val.name, path: val.path,component: req(val.component), title: val.title});
               }
             } else {
-              menu[0].children.push({name: val.name, path: val.path,component: req(val.component)});
+              menu[0].children.push({name: val.name, path: val.path,component: req(val.component), title: val.title});
             }
 
           })
@@ -80,7 +80,43 @@ util.getRouterChildren = function (vm) {
     });
     menu[0].children.push({name: 'homes', path: 'homes', component: req('home/homes')}); // 添加首页
     vm.$store.commit('updateDefaultRouter', menu); // 动态加入菜单
-    vm.$store.commit('updateDefaultRouter', error); // 动态加入404页面
+    vm.$store.commit('updateRouter', error); // 动态加入404页面
   });
+};
+
+util.initRouterNode = function (routers, data) {
+  for (let item of data) {
+    let menu = Object.assign({}, item);
+    // menu.component = lazyLoading(menu.component);
+    if (item.children && item.children.length > 0) {
+      menu.children = [];
+      util.initRouterNode(menu.children, item.children);
+    }
+    // 给页面添加标题
+    menu.meta = { title: menu.title };
+    routers.push(menu);
+  }
+};
+// 日期转换
+util.formatDate = function (date, fmt) {
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4-RegExp.$1.length));
+  }
+  let o = {
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds()
+  };
+
+  // 遍历这个对象
+  for (let k in o) {
+    if (new RegExp(`(${k})`).test(fmt)){
+      let str = o[k] + '';
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str:padLeftZero(str));
+    }
+  }
+  return fmt;
 };
 export default util;

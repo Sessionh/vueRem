@@ -83,6 +83,7 @@
         this.$router.push({
           name: val.name
         });
+        this.$store.commit('setMenuPath', val.name);
 
       }
     }

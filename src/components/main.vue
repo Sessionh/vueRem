@@ -87,7 +87,13 @@
     border-radius: 50%;
     background-size: 100% 100%;
   }
-
+  .itemClick:hover{
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .itemSpan {
+    color: #9ea7b4;
+  }
 </style>
 <template>
   <div class="main">
@@ -106,11 +112,11 @@
                     <Icon class="menuPickUp" @click.native="showMenuIcon"  :class="rotateIcon" type="navicon-round" size="24"></Icon>
                   </Col>
                   <Col span="20">
-                    <Breadcrumb>
-                      <BreadcrumbItem>Home1</BreadcrumbItem>
-                      <BreadcrumbItem>Components</BreadcrumbItem>
-                      <BreadcrumbItem>Layout</BreadcrumbItem>
-                    </Breadcrumb>
+                    <div  style="font-size: 12px;margin-left: 10px;margin-top: 2px;">
+                      <span class="itemClick"  @click="itemClick('homes')">首页</span>
+                      <span class="itemSpan" v-show="menuPathList.name !== ''"><i style="margin: 0 5px 0 5px;">/</i>{{menuPathList.name}}<i style="margin: 0 5px 0 5px;">/</i></span>
+                      <span class="itemSpan" v-show="menuPathList.name !== ''" >{{menuPathList.nameSub}}</span>
+                    </div>
                   </Col>
                 </Row>
               </div>
@@ -143,7 +149,6 @@
         <keep-alive :include="keepMenuList">
           <router-view></router-view>
         </keep-alive>
-
       </div>
 
     </div>
@@ -175,7 +180,10 @@
         return this.$store.state.app.menuList;
       },
       keepMenuList () {
-        return this.$store.state.app.keepMenuList
+        return this.$store.state.app.keepMenuList;
+      },
+      menuPathList () {
+        return this.$store.state.app.menuPath;
       }
     },
     methods: {
@@ -202,6 +210,14 @@
       butMouseOver () {
         this.$refs.uls.style.display = 'inline';
       },
+      itemClick (name) {
+        this.$router.push({
+          name: name
+        });
+        this.$store.commit('setTagColor', '首页');
+        this.$store.commit('initMenuPath');
+      }
+
     },
     mounted () {
       // 初始 加载首页

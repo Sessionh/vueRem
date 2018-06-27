@@ -7,9 +7,7 @@
 </style>
 <template>
   <div>
-    <Card>
       <Table stripe :columns="columns1" :data="data1" :height="height"></Table>
-    </Card>
   </div>
 </template>
 <script>

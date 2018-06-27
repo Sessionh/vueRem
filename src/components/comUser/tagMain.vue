@@ -82,6 +82,7 @@
          this.$store.commit('closeCurrentTag');
         } else {
           this.$store.commit('closeAllTagList', this);
+          this.$store.commit('initMenuPath');
         }
         this.$refs.tags.setTagBodyLeft();
       }

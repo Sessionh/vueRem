@@ -7,12 +7,48 @@ const app = {
     cachePage: [],
     tagColor: '首页',
     menuList: [], // 菜单
-    keepMenuList: ['appRoles'], // 缓存路由
+    keepMenuList: [], // 缓存路由
+    menuRouter: [], // 保存 router 信息
+    menuPath: {name: '', nameSub: ''}, // 主页面 菜单路径显示
   },
   mutations: {
     // 添加菜单
     setMenu (state, list) {
       state.menuList = list;
+    },
+    // 设置 主页面显示 菜单路径
+    setMenuPath(state, name) {
+      if (name === 'homes') { // 判断 是否跳转首页
+        state.menuPath = {name: '', nameSub: ''};
+      }  else {
+        state.menuList.forEach(res => {
+          if (res.children !== null && res.children !== undefined) {
+            res.children.forEach(resSub => {
+              if (resSub.name === name) {
+                state.menuPath.name = res.title;
+                state.menuPath.nameSub = resSub.title;
+              } else {
+                if (resSub.children !== null && resSub.children !== undefined && resSub.children !== null) {
+                  if (resSub.children.length > 0) {
+                    resSub.children.forEach(resSubmenu => { // 3级菜单 循环
+                      if (resSubmenu.name === name) {
+                        state.menuPath.name = res.title  ;
+                        state.menuPath.nameSub = resSubmenu.title;
+                      }
+                    });
+
+                  }
+                }
+              }
+
+            })
+          }
+        })
+      }
+
+    },
+    initMenuPath (state) {
+      state.menuPath = {name: '', nameSub: ''};
     },
     setTagList (state, list) {
       // state.cachePage.push(...list);
@@ -65,6 +101,11 @@ const app = {
     },
     // 动态添加全局路由
     updateDefaultRouter (state, routes) {
+      router.addRoutes(routes);
+      state.menuRouter = routes;
+    },
+    // 动态添加路由 不保存
+    updateRouter (state,routes) {
       router.addRoutes(routes);
     },
   }

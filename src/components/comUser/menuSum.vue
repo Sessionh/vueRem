@@ -32,16 +32,16 @@
 </style>
 <template>
   <div>
-    <Menu width="auto" active-name="1-2" :open-names="['1']" @on-select="onSelectMenu" mode="vertical" theme="dark" v-for="item in menuList" :key="item.name">
-      <Submenu  :name="item.title">
+    <Menu width="auto" :active-name="activeName" :open-names="['host']" @on-select="onSelectMenu" mode="vertical" theme="dark" v-for="item in menuList" :key="item.name">
+      <Submenu  :name="item.name">
         <template slot="title">
           <Icon :type="item.icon"></Icon>
           {{item.title}}
         </template>
-          <MenuItem v-if="items.children === undefined || items.children.length === 0" v-for="items in item.children"  :key="items.name" :name="items.title + ',' + items.name">{{items.title}}</MenuItem>
+          <MenuItem  v-if="items.children === undefined || items.children.length === 0" v-for="items in item.children"  :key="items.name" :name="items.title">{{items.title}}</MenuItem>
           <Submenu v-if="items.children !== undefined && items.children.length > 0" v-for="items in item.children"  :key="items.name" :name="items.title">
             <template slot="title">{{items.title}}</template>
-            <MenuItem v-for="itemSub in items.children" :name="itemSub.title + ',' + itemSub.name" :key="itemSub.name">{{itemSub.title}}</MenuItem>
+            <MenuItem v-for="itemSub in items.children" :name="itemSub.title" :key="itemSub.name">{{itemSub.title}}</MenuItem>
           </Submenu>
 
       </Submenu>
@@ -65,17 +65,25 @@
     },
     data () {
       return {
+        activeName: '',
+        menuData: this.menuList
 
       }
     },
     methods: {
       onSelectMenu (name) {
-        console.log(name);
-        let data = name.split(',');
-        this.$store.commit('setTag', {name: data[0], path: data[1]});
-        this.$router.push({
-          name: data[1]
+        this.activeName = name;
+        let routerData =  this.$store.state.app.menuRouter;
+        routerData[0].children.forEach(res => {
+          if (name === res.title) {
+            this.$store.commit('setTag', {name: res.title, path: res.name});
+            this.$store.commit('setMenuPath', res.name);
+            this.$router.push({
+              name: res.name
+            });
+          }
         });
+
       }
     }
 
