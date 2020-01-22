@@ -1,0 +1,97 @@
+
+
+/**
+ * @description: top、bottom  0.5px 边框进行处理 
+ * @return: 
+ */
+.border-bottom,
+.border-top,
+.border-left {
+  border: none !important;
+  position: relative;
+}
+
+.border-bottom::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  border-bottom: 1Px solid #e6e6e6;
+  left: 0;
+  bottom: 0;
+  transform-origin: 0 bottom;
+  opacity: 1;
+}
+
+.border-bottom {
+  border-bottom: 1Px solid #e6e6e6;
+}
+
+.border-left::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1Px;
+  height: 100%;
+  border-left: 1Px solid #e6e6e6;
+  transform-origin: 0 0;
+}
+
+.border-top::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  border-bottom: 1Px solid #e6e6e6;
+  left: 0;
+  top: 0;
+  transform-origin: 0 bottom;
+  opacity: 1;
+}
+.border {
+  border: 1Px solid #e6e6e6;
+}
+
+.border-demo {
+  border-bottom: 1Px solid #e6e6e6;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+
+  .border-bottom::after, .border-top::after {
+    transform: scaleY(1);
+  }
+  .border-left::after {
+     transform: scaleX(1);
+
+  }
+
+  .border-demo {
+    border-bottom: .5Px solid #e6e6e6;
+  }
+
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx) {
+  .border-bottom::after, .border-top::after {
+    transform: scaleY(1);
+  }
+   .border-left::after {
+     transform: scaleX(1);
+
+  }
+
+  .border-demo {
+    border-bottom: .33Px solid #e6e6e6;
+  }
+
+}
+
+
+
+/*省略号*/
+
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
