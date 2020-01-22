@@ -1,51 +1,92 @@
 <template>
   <div class="home">
     <BScroll>
-      <div class="demo border-demo">开始打开</div>
+      <div class="demo border-bottom">开始打开</div>
       <van-button type="primary">默认按钮</van-button>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
 
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
-      <div class="add border-demo">
+      <div class="add border-bottom">
         可是看到开始可抵扣SDK市第九届
       </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+      <div class="add border-bottom">
+        可是看到开始可抵扣SDK市第九届
+      </div>
+
     </BScroll>
 
   </div>
@@ -54,7 +95,6 @@
 <script>
 import BScroll from '@/components/BScroll'
 export default {
-  name: 'home',
   components: {
     BScroll
   },

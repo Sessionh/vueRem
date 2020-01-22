@@ -22,7 +22,10 @@
             v-if="!isLoad && (!data  || data.length === 0) && isNoData"
             class="text"
           >{{noDataText}}</div>
-          <Button v-if="isLoad" :isLoad="true" ></Button>
+          <Button
+            v-if="isLoad"
+            :isLoad="true"
+          ></Button>
 
         </div>
 
@@ -35,7 +38,7 @@
       v-if="isShowTop && isTop"
       @click="toTop"
     >
-      <img src="static/images/to_top.png">
+      <img src="to_top.png">
     </div>
 
   </div>
@@ -45,10 +48,12 @@
 import BScroll from '@better-scroll/core';
 import Pullup from '@better-scroll/pull-up';
 import ScrollBar from '@better-scroll/scroll-bar'
+import MouseWheel from '@better-scroll/mouse-wheel'
 import Button from './mButton';
 
 BScroll.use(Pullup);
 BScroll.use(ScrollBar);
+BScroll.use(MouseWheel)
 
 export default {
   components: {
@@ -195,6 +200,16 @@ export default {
     eventPassthrough: {
       type: String,
       default: ''
+    },
+    mouseWheel: {
+      type: Object,
+      default: () => {
+        return {
+          speed: 20,
+          invert: false,
+          easeTime: 300
+        }
+      }
     }
 
 
@@ -222,15 +237,23 @@ export default {
         return;
       }
 
+      let bounce = this.bounce ? this.bounce : {
+        top: false,
+        bottom: false,
+        left: false,
+        right: false
+      }
+
       this.bscroll = new BScroll(this.$refs.bsWrap, {
         scrollY: this.scrollY,
         pullUpLoad: this.pullUpLoad,
-        bounce: this.bounce,
+        bounce: bounce,
         scrollX: this.scrollX,
         scrollbar: this.scrollbar,
         click: this.click,
         freeScroll: this.freeScroll,
         eventPassthrough: this.eventPassthrough,
+        mouseWheel: this.mouseWheel
       })
 
 
@@ -279,7 +302,7 @@ export default {
 
     },
     refresh() {
-      
+
       // 代理better-scroll的refresh方法
       this.bscroll && this.bscroll.refresh();
     },
@@ -315,12 +338,9 @@ export default {
   position: relative;
 }
 
-
-.bscroll-indicator{
+.bscroll-indicator {
   background: rgba(0, 0, 0, 0.2) !important;
-  
 }
-
 
 .bs-container {
   height: 100%;
