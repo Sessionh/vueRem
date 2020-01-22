@@ -22,6 +22,9 @@ export default {
       show: false
 
     }
+  },
+  created() {
+    this.$toast('通知内容');
   }
 
 
