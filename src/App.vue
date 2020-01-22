@@ -6,7 +6,6 @@
     >
       <van-nav-bar
         :title="$route.meta.title"
-      
         :right-text="$route.meta.rightText"
         left-arrow
         @click-left="onClickLeft"
@@ -82,13 +81,11 @@ export default {
   top: 0;
   left: 0;
   z-index: 10;
- 
 }
 .wrap {
   position: absolute;
   top: 0;
   width: 100%;
-  
 }
 .main {
   width: 100%;
@@ -97,24 +94,23 @@ export default {
 .foot {
   width: 100%;
   height: auto;
-  /* background: #222; */
   position: absolute;
   bottom: 0;
   z-index: 5;
 }
 .app-header .van-nav-bar {
   @include border_1px(bottom);
-  
 }
 
 .van-hairline--bottom::after {
   border-bottom-width: 0 !important;
-
 }
 
 .app-foot .van-tabbar {
   @include border_1px(top);
- 
 }
 
+.van-overlay {
+  z-index: 1000 !important;
+}
 </style>
