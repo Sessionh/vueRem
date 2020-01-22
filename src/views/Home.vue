@@ -1,21 +1,18 @@
 <template>
   <div class="home">
-    <BScroll>
+    <BScroll :isLoad="false">
       <div class="demo">开始打开</div>
-      
-     
-
     </BScroll>
-    <van-overlay :show="show" @click="show = false" />
-
   </div>
 </template>
 
 <script>
-import BScroll from '@/components/BScroll'
+import BScroll from '@/components/BScroll';
+
 export default {
   components: {
-    BScroll
+    BScroll,
+   
   },
   data() {
     return {
@@ -24,7 +21,7 @@ export default {
     }
   },
   created() {
-    this.$toast('通知内容');
+    // this.$toast('通知内容');
   }
 
 

@@ -76,7 +76,7 @@ export default {
 
 
 .loader {
-  height: 56px;
+  height: 66px;
   width: auto;
 }
 
@@ -121,7 +121,7 @@ export default {
   width: 8px;
   height: 100%;
   border-radius: 4px;
-  margin: 2px;
+  margin: 5px;
   animation-fill-mode: both;
   display: inline-block;
 }
