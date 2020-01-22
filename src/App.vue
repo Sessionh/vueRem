@@ -29,10 +29,12 @@
         v-model="active"
         :border="false"
       >
-        <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-        <van-tabbar-item icon="search">标签</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+        <van-tabbar-item
+          v-for="(item, index) in menus"
+          :key="index"
+          :icon="item.icon"
+        >{{item.name}}</van-tabbar-item>
+
       </van-tabbar>
 
     </div>
@@ -45,6 +47,24 @@ export default {
   data() {
     return {
       active: 0,
+      menus: [
+        {
+          icon: 'home-o',
+          name: '首页'
+        },
+        {
+          icon: 'search',
+          name: '分类'
+        },
+        {
+          icon: 'friends-o',
+          name: '我的'
+        },
+        {
+          icon: 'setting-o',
+          name: '主页'
+        }
+      ]
     }
   },
   methods: {
