@@ -2,7 +2,6 @@ import axios from 'axios';
 import {
     queryString
 } from '@/lib/util.js';
-import store from '../store';
 
 
 // 引用axios，设置头文件
