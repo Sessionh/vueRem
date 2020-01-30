@@ -5,6 +5,7 @@
       class="app-header"
     >
       <van-nav-bar
+        :style="{background: $route.meta.hdColor, border:  $route.meta.borderHide ? 'none' : ''}"
         :title="$route.meta.title"
         :right-text="$route.meta.rightText"
         left-arrow
@@ -38,6 +39,7 @@
       </van-tabbar>
 
     </div>
+    
 
   </div>
 </template>
@@ -80,14 +82,18 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  background: #f6f6f6;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   font-size: 28px;
   overflow: hidden;
+  
 }
 
 * {
@@ -100,7 +106,10 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 100;
+ .van-nav-bar .van-icon   {
+    color: #333333;
+  }
 }
 .wrap {
   position: absolute;
@@ -116,10 +125,11 @@ export default {
   height: auto;
   position: absolute;
   bottom: 0;
-  z-index: 5;
+  z-index: 100;
 }
 .app-header .van-nav-bar {
   @include border_1px(bottom);
+  
 }
 
 .van-hairline--bottom::after {

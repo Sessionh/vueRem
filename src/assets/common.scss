@@ -1,23 +1,23 @@
-@mixin border_1px($type, $color: #e6e6e6) {
+@mixin border_1px($type, $color: #e6e6e6, $line: solid) {
   & {
     @if $type=='' {
-      border: 1PX solid $color;
+      border: 1PX $line $color;
     }
 
     @else if $type=='left' {
-      border-left: 1PX solid $color;
+      border-left: 1PX $line $color;
     }
 
     @else if $type=='bottom' {
-      border-bottom: 1PX solid $color;
+      border-bottom: 1PX $line $color;
     }
 
     @else if $type=='right' {
-      border-right: 1PX solid $color;
+      border-right: 1PX $line $color;
     }
 
     @else if $type=='top' {
-      border-top: 1PX solid $color;
+      border-top: 1PX $line $color;
     }
 
 
@@ -25,49 +25,49 @@
     (min-resolution: 2dppx) {
 
       @if $type=='' {
-        border: .5PX solid $color;
+        border: .5PX $line $color;
       }
 
       @else if $type=='left' {
-        border-left: .5PX solid $color;
+        border-left: .5PX $line $color;
       }
 
       @else if $type=='bottom' {
-        border-bottom: .5PX solid $color;
+        border-bottom: .5PX $line $color;
       }
 
       @else if $type=='right' {
-        border-right: .5PX solid $color;
+        border-right: .5PX $line $color;
       }
 
       @else if $type=='top' {
-        border-top: .5PX solid $color;
+        border-top: .5PX $line $color;
       }
 
 
     }
 
-    @media (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 2dppx) {
+    @media (-webkit-min-device-pixel-ratio: 3),
+    (min-resolution: 3dppx) {
 
       @if $type=='' {
-        border: .333PX solid $color;
+        border: .333PX $line $color;
       }
 
       @else if $type=='left' {
-        border-left: .333PX solid $color;
+        border-left: .333PX $line $color;
       }
 
       @else if $type=='bottom' {
-        border-bottom: .333PX solid $color;
+        border-bottom: .333PX $line $color;
       }
 
       @else if $type=='right' {
-        border-right: .333PX solid $color;
+        border-right: .333PX $line $color;
       }
 
       @else if $type=='top' {
-        border-top: .333PX solid $color;
+        border-top: .333PX $line $color;
       }
 
 
@@ -104,4 +104,89 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+
+/* 在这里做iPhone X的判断 */
+
+@media screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio: 3) {
+  .border-iphone {
+    /* bottom: 40px; */
+    border-bottom: 40px solid #fff;
+  }
+}
+
+/* 1792x828px at 326ppi  iPhone XR*/
+
+@media only screen 
+  and (device-width : 414px) 
+  and (device-height : 896px) 
+  and (-webkit-device-pixel-ratio : 2) {
+  .border-iphone {
+    /* bottom: 34px; */
+    border-bottom: 34px solid #fff;
+  }
+
+ 
+}
+
+/* 2436x1125px at 458ppi  iPhone XS*/
+
+@media only screen 
+  and (device-width : 375px) 
+  and (device-height : 812px) 
+  and (-webkit-device-pixel-ratio : 3) {
+  .border-iphone {
+    /* bottom: 34px; */
+    border-bottom: 34px solid #fff;
+  }
+
+ 
+}
+
+/* 2688x1242px at 458ppi iPhone XS Max*/
+
+@media only screen 
+  and (device-width : 414px) 
+  and (device-height : 896px) 
+  and (-webkit-device-pixel-ratio : 3) {
+   .border-iphone {
+    /* bottom: 34px; */
+    border-bottom: 34px solid #fff;
+  }
+
+}
+
+
+.fwb {
+  font-weight: bold;
+}
+
+.ft_16 {
+  font-size: 16px;
+}
+
+.ft_18 {
+  font-size: 18px;
+}
+
+.ft_20 {
+  font-size: 20px;
+}
+
+.ft_22 {
+  font-size: 22px;
+}
+
+.ft_24 {
+  font-size: 24px;
+}
+.ft_26 {
+  font-size: 26px;
+}
+.ft_28 {
+  font-size: 28px;
+}
+.ft_30 {
+  font-size: 30px;
 }

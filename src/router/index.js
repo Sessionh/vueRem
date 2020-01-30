@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import {addUrl} from '@/lib/util'
 
 Vue.use(VueRouter)
 
@@ -15,10 +15,58 @@ const routes = [
     name: 'home',
     meta: {
       showHeader: true,
-      showFoot: true,
+      showFoot: false,
       title: '首页'
     },
-    component: Home
+    component: addUrl('Home')
+  },
+  {
+    path: '/vip',
+    name: 'vip',
+    meta: {
+      showHeader: true,
+      title: 'vip'
+    },
+    component: addUrl('Vip')
+  },
+  {
+    path: '/joinPartar',
+    name: 'joinPartar',
+    meta: {
+      showHeader: true,
+      title: '加盟合作'
+    },
+    component: addUrl('JoinPartar')
+  },
+  {
+    path: '/shopDetails',
+    name: 'shopDetails',
+    meta: {
+      showHeader: true,
+      title: '商品详情'
+    },
+    component: addUrl('ShopDetails')
+  },
+  {
+    path: '/ganeralize',
+    name: 'ganeralize',
+    meta: {
+      showHeader: true,
+      title: '推广'
+    },
+    component: addUrl('Ganeralize')
+  },
+  {
+    path: '/shareCode',
+    name: 'shareCode',
+    meta: {
+      showHeader: true,
+      title: '分享码',
+      hdColor: '#ffd917',
+      borderHide: true
+     
+    },
+    component: addUrl('ShareCode')
   },
   {
     path: '/about',
@@ -28,10 +76,7 @@ const routes = [
       title: '测试'
 
     },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component:  addUrl('About')
   }
 ]
 

@@ -1,3 +1,11 @@
+
+/**
+ * @description: router url 快捷路由
+ * @param {string} url
+ * @return: 
+ */
+export const addUrl = (url) => resolve =>  require([`@/views/${url}.vue`], resolve);
+
 // 根据name获取地址栏的参数值
 export const getQueryString = (name) => {
   let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)

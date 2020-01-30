@@ -5,7 +5,10 @@ import {
   Tabbar,
   TabbarItem,
   NavBar,
-  Toast
+  Toast,
+  Swipe,
+  SwipeItem,
+  Area,
 } from 'vant';
 
 
@@ -16,3 +19,6 @@ Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(NavBar);
 Vue.use(Toast);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Area);
