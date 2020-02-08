@@ -63,6 +63,18 @@
           <div class="num-li">
             <span>￥5000</span>
           </div>
+           <div class="num-li">
+            <span>￥5000</span>
+          </div>
+           <div class="num-li">
+            <span>￥5000</span>
+          </div>
+           <div class="num-li">
+            <span>￥5000</span>
+          </div>
+           <div class="num-li">
+            <span>￥5000</span>
+          </div>
 
         </div>
       </div>
@@ -110,10 +122,18 @@
 
           <div class="start-num">0kb</div>
           <div class="end-num">{{countNum}}kb</div>
-
         </div>
       </div>
+
+    
     </BScroll>
+
+      <div class="pay-action border-top">
+        <div class="left-msg">
+          实付金额：￥80.00
+        </div>
+        <div class="pay-but">去支付</div>
+      </div>
 
     <div
       class="city-f"
@@ -305,6 +325,7 @@ export default {
 
   .progress {
     padding: 0 30px;
+    border-bottom: 134px solid #fff;
     .progress-title {
       padding: 40px 0 70px 0;
     }
@@ -348,6 +369,32 @@ export default {
           position: relative;
         }
       }
+    }
+  }
+  .pay-action {
+    height: 124px;
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    .left-msg {
+      flex: 1;
+    }
+    .pay-but {
+      width: 150px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ff494d;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 32px;
+
     }
   }
 
