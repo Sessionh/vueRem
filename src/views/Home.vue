@@ -2,21 +2,58 @@
   <div class="home">
     <BScroll :isLoad="false">
       <div class="ul">
-        <div class="item" @click="detail('/vip')">
+        <div
+          class="item"
+          @click="detail('/vip')"
+        >
           VIP
         </div>
-        <div class="item" @click="detail('/joinPartar')">
+        <div
+          class="item"
+          @click="detail('/joinPartar')"
+        >
           加盟合作
         </div>
-        <div class="item" @click="detail('/shopDetails')">
+        <div
+          class="item"
+          @click="detail('/shopDetails')"
+        >
           商品详情
         </div>
-        <div class="item" @click="detail('/shareCode')">
+        <div
+          class="item"
+          @click="detail('/shareCode')"
+        >
           分享码
         </div>
-         <div class="item" @click="detail('/ganeralize')">
+        <div
+          class="item"
+          @click="detail('/ganeralize')"
+        >
           推广
         </div>
+
+        <div
+          class="item"
+          @click="detail('/hotRedPacket')"
+        >
+          刺激红包
+        </div>
+        <div
+          class="item"
+          @click="detail('/taskRedPacket')"
+        >
+          任务红包
+        </div>
+
+         <div
+          class="item"
+          @click="detail('/inviteFriends')"
+        >
+          邀请有奖
+        </div>
+        
+        
 
       </div>
 
@@ -40,7 +77,9 @@ export default {
   },
   methods: {
     detail(val) {
-      this.$router.push(val)
+      this.$router.push({
+        path: val
+      })
 
     }
 
@@ -80,6 +119,5 @@ export default {
   background: #dcdcdc;
   margin: 20px 20px 0 0;
   border-radius: 12px;
-  
 }
 </style>

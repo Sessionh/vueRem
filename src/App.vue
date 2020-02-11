@@ -85,6 +85,12 @@ export default {
 html {
   background: #f6f6f6;
 }
+progress {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 20px;
+  background: #ffe0e4 !important;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

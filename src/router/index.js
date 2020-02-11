@@ -74,10 +74,42 @@ const routes = [
     meta: {
       showHeader: true,
       title: '测试'
-
     },
     component:  addUrl('About')
-  }
+  },
+  {
+    path: '/hotRedPacket',
+    name: 'hotRedPacket',
+    meta: {
+      showHeader: true,
+      title: '刺激红包'
+    },
+    component:  addUrl('HotRedPacket')
+  },
+  {
+    path: '/taskRedPacket',
+    name: 'taskRedPacket',
+    meta: {
+      showHeader: true,
+      title: '刺激红包'
+    },
+    component:  addUrl('TaskRedPacket')
+  },
+  {
+    path: '/inviteFriends',
+    name: 'inviteFriends',
+    meta: {
+      showHeader: true,
+      title: '邀请有奖'
+    },
+    component:  addUrl('InviteFriends')
+  },
+
+  
+
+  
+
+  
 ]
 
 const router = new VueRouter({

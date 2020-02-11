@@ -369,7 +369,7 @@ export default {
 
       .line {
         height: 100%;
-        width: 2px;
+        width: 2PX;
         @include border_1px(left, #fc5e2b, dashed);
       }
     }
