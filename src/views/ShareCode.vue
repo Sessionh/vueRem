@@ -6,7 +6,7 @@
     >
       <div class="card">
         <div class="title">
-          <img src="codeShare/组 82.png">
+          <img src="codeShare/组 82@3x.png">
           <span>
             <p class="name">如人饮水暖</p>
             <p class="msg">快去分享给你的小伙伴吧</p>
@@ -27,19 +27,19 @@
         <div class="name">更多方式分享</div>
         <div class="tabs">
           <span class="item">
-            <img src="codeShare/WX.png">
+            <img src="codeShare/WX@3x.png">
             <p>微信</p>
           </span>
           <span class="item">
-            <img src="codeShare/PYQ.png">
+            <img src="codeShare/PYQ@3x.png">
             <p>朋友圈</p>
           </span>
           <span class="item">
-            <img src="codeShare/QQ.png">
+            <img src="codeShare/QQ@3x.png">
             <p>QQ</p>
           </span>
            <span class="item">
-            <img src="codeShare/wb.png">
+            <img src="codeShare/wb@3x.png">
             <p>微博</p>
           </span>
 
@@ -147,6 +147,11 @@ export default {
       padding-top: 50px;
       .item {
         padding: 0 40px;
+        img {
+          width: 80px;
+          height: 80px;
+
+        }
         p {
           margin-top: 10px;
         }
