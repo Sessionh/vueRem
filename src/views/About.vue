@@ -14,7 +14,8 @@ export default {
   },
   data() {
     return {
-      data: ''
+      data: '',
+      ret: '老师的课'
 
     }
   }
