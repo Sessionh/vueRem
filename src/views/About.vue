@@ -14,6 +14,7 @@ export default {
   },
   data() {
     return {
+      data: 1
 
     }
   }
