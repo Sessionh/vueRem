@@ -145,17 +145,21 @@
       </span>
 
     </div>
+    <Model v-if="isModel" @close="modelColse"></Model>
 
   </div>
 </template>
 <script>
 // import BScroll from 'components/BScroll.vue';
+import Model from '../components/ModelRedPacket.vue'
 export default {
   components: {
+    Model
     // BScroll
   },
   data() {
     return {
+      isModel: true,
       current: 0,
       imgList: [
         {
@@ -171,6 +175,10 @@ export default {
   methods: {
     onChange(index) {
       this.current = index;
+    },
+    modelColse() {
+      this.isModel = false
+
     }
 
   }
