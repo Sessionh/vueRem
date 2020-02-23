@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       data: '',
-      ret: '老师的课'
+      ret: '老师'
 
     }
   }

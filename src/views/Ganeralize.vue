@@ -48,33 +48,10 @@
           投放金额
         </div>
         <div class="money-cloumn">
-          <div class="num-li action">
-            <span>￥100</span>
+          <div class="num-li " :class="index === moneyIndex ? 'action' : ''" v-for="(item, index) in moneyList" @click="changeMoney(index)" :key="index">
+            <span>￥{{item.num}}</span>
           </div>
-          <div class="num-li">
-            <span>￥200</span>
-          </div>
-          <div class="num-li">
-            <span>￥300</span>
-          </div>
-          <div class="num-li">
-            <span>￥400</span>
-          </div>
-          <div class="num-li">
-            <span>￥5000</span>
-          </div>
-           <div class="num-li">
-            <span>￥5000</span>
-          </div>
-           <div class="num-li">
-            <span>￥5000</span>
-          </div>
-           <div class="num-li">
-            <span>￥5000</span>
-          </div>
-           <div class="num-li">
-            <span>￥5000</span>
-          </div>
+      
 
         </div>
       </div>
@@ -110,7 +87,7 @@
             :style="{left: `${progressNum}%`}"
           >
             <div class="content">
-              <img src="generalize/1.png">
+              <img src="generalize/1@3x.png">
               <div
                 class="num"
                 :style="{left: progressNum <= 2 ? '0.2rem' : 0 }"
@@ -125,15 +102,21 @@
         </div>
       </div>
 
-    
     </BScroll>
 
-      <div class="pay-action border-top">
-        <div class="left-msg">
-          实付金额：￥80.00
+    <div class="pay-action border-top">
+      <div class="left-msg">
+        <div class="top-num">
+          <span class="item ">实付金额:<span class="color-red">￥80.00</span></span>
+          <span class="item count-money">总金额:￥80.00</span>
         </div>
-        <div class="pay-but">去支付</div>
+        <div class="bottom-num">
+          <span class="item">kb抵扣:￥80.00</span>
+          <span class="item right">源力抵扣:s￥10.00</span>
+        </div>
       </div>
+      <div class="pay-but">去支付</div>
+    </div>
 
     <div
       class="city-f"
@@ -172,7 +155,25 @@ export default {
       windowWidth: '',
       windowSize: '',
       countNum: 0.05,
-      nowNum: '0'
+      nowNum: '0',
+      moneyIndex: 0,
+      moneyList: [
+        {
+          num: 100
+        },
+         {
+          num: 200
+        },
+         {
+          num: 300
+        },
+         {
+          num: 400
+        },
+         {
+          num: 500
+        }
+      ]
 
     }
   },
@@ -193,7 +194,11 @@ export default {
 
 
     },
-   
+    changeMoney(val) {
+      this.moneyIndex = val;
+
+    },
+
     touchmove(ev) {
 
       let pageX = ev.changedTouches[0].pageX;
@@ -206,13 +211,13 @@ export default {
       } else {
         this.progressNum = Number(resultProNum)
       }
-       this.nowNum = Number(this.countNum * this.progressNum/100).toFixed(2)
-    
+      this.nowNum = Number(this.countNum * this.progressNum / 100).toFixed(2)
 
-     
+
+
 
     },
-   
+
   }
 
 }
@@ -383,6 +388,26 @@ export default {
     padding: 0 30px;
     .left-msg {
       flex: 1;
+      .top-num {
+        display: flex;
+        align-items: center;
+
+        .count-money {
+          font-size: 22px;
+          text-decoration: line-through;
+          padding-left: 20px;
+        }
+      }
+      .bottom-num {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+        color: #a9a9a9;
+        margin-top: 14px;
+        .right {
+          padding-left: 20px;
+        }
+      }
     }
     .pay-but {
       width: 150px;
@@ -394,7 +419,6 @@ export default {
       color: #fff;
       border-radius: 10px;
       font-size: 32px;
-
     }
   }
 
