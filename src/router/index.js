@@ -91,7 +91,7 @@ const routes = [
     name: 'taskRedPacket',
     meta: {
       showHeader: true,
-      title: '刺激红包'
+      title: '任务红包'
     },
     component:  addUrl('TaskRedPacket')
   },
