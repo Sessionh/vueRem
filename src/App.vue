@@ -77,6 +77,9 @@ export default {
     onClickRight() {
 
     }
+  }, 
+  created() {
+    localStorage.setItem('token', '9f553b8f6772d415ae4b80a14e08e1bf')
   }
 }
 </script>

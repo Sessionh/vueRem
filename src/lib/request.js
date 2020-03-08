@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
     queryString
 } from '@/lib/util.js';
+import {baseURL} from '@/lib/env.js'
 
 
 // 引用axios，设置头文件
@@ -32,7 +33,7 @@ function apiAxios(method, url, params, token) {
         //拼接参数
         url: method === 'GET' || method === 'DELETE' ? queryString(url, params) : url,
         data: method === 'POST' || method === 'PUT' ? params : null,
-        baseURL: '',
+        baseURL: baseURL,
         timeout: 10000,
         headers: {
             ACCESS_TOKEN: token

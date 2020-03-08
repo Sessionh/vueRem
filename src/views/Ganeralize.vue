@@ -9,14 +9,14 @@
       <div class="header">
         <img
           class="user-logo"
-          src="detail.png"
+          :src="userDetail.iamge"
         >
 
         <span class="msg">
-          <p>教你如何快速掌握摄影技巧的学习方法</p>
+          <p>{{userDetail.videoTitle}}</p>
           <p class="use">
-            <img src="https://img.fengchengtianxia.com/FqqKHdM0zIJ17rZcscDHhhnl0W__">
-            <span>张三</span>
+            <img :src="userDetail.userPic">
+            <span>{{userDetail.userNickname}}</span>
           </p>
         </span>
 
@@ -27,31 +27,36 @@
         @click="isCity = true"
       >
         <span class="name">选择投放城市</span>
-        <span>全部</span>
+        <span>{{this.userDetail.city ? this.userDetail.city : '全部'}}</span>
         <van-icon
           class="icon"
           name="arrow"
         />
       </div>
 
-      <div class="checked-item">
+      <!-- <div class="checked-item">
         <span class="name">选择投放板块</span>
         <span>全部</span>
         <van-icon
           class="icon"
           name="arrow"
         />
-      </div>
+      </div> -->
 
       <div class="select-money">
         <div class="title">
           投放金额
         </div>
         <div class="money-cloumn">
-          <div class="num-li " :class="index === moneyIndex ? 'action' : ''" v-for="(item, index) in moneyList" @click="changeMoney(index)" :key="index">
+          <div
+            class="num-li "
+            :class="index === moneyIndex ? 'action' : ''"
+            v-for="(item, index) in moneyList"
+            @click="changeMoney(index)"
+            :key="index"
+          >
             <span>￥{{item.num}}</span>
           </div>
-      
 
         </div>
       </div>
@@ -59,16 +64,16 @@
       <div class="user-count-column">
         <span class="item">
           <span class="fwb">预计受众用户：</span>
-          <span class="color-red">70万人</span>
+          <span class="color-red">{{numDetail.expectUserNum | filterTenThousand}}万人</span>
         </span>
         <span class="item">
 
           <span class="fwb">预计浏览量：</span>
-          <span class="color-red">100万人/次</span>
+          <span class="color-red">{{numDetail.expectViewNum | filterTenThousand}}万人/次</span>
         </span>
         <span class="item">
           <span class="fwb">预计获得点赞量：</span>
-          <span class="color-red">100万</span>
+          <span class="color-red">{{numDetail.expectLikeNum | filterTenThousand}}万</span>
         </span>
 
       </div>
@@ -107,15 +112,15 @@
     <div class="pay-action border-top">
       <div class="left-msg">
         <div class="top-num">
-          <span class="item ">实付金额:<span class="color-red">￥80.00</span></span>
-          <span class="item count-money">总金额:￥80.00</span>
+          <span class="item ">实付金额:<span class="color-red">￥{{numDetail.realMoney}}</span></span>
+          <span class="item count-money">总金额:￥{{moneyList[moneyIndex].num}}</span>
         </div>
         <div class="bottom-num">
-          <span class="item">kb抵扣:￥80.00</span>
-          <span class="item right">源力抵扣:s￥10.00</span>
+          <span class="item">kb抵扣:￥{{numDetail.kbMoney}}</span>
+          <!-- <span class="item right">源力抵扣:s￥10.00</span> -->
         </div>
       </div>
-      <div class="pay-but">去支付</div>
+      <div class="pay-but" @click="goToPay">去支付</div>
     </div>
 
     <div
@@ -125,6 +130,7 @@
 
       <van-area
         class="area"
+        :value="cityValue"
         :area-list="areaList"
         :columns-placeholder="['请选择', '请选择']"
         :columns-num="2"
@@ -140,6 +146,7 @@
 <script>
 import BScroll from 'components/BScroll.vue';
 import areaList from '@/lib/city.js'
+import { getVideoDetail, extendPutMoney } from '../lib/api'
 
 export default {
   components: {
@@ -161,41 +168,128 @@ export default {
         {
           num: 100
         },
-         {
+        {
           num: 200
         },
-         {
+        {
           num: 300
         },
-         {
+        {
           num: 400
         },
-         {
+        {
           num: 500
         }
-      ]
+      ],
+      userDetail: '',
+      cityValue: '',
+      numDetail: '',
+      putMoney: 0,
+      id: ''
 
     }
+  },
+  filters: {
+    filterTenThousand(val) {
+      if(val) {
+        return val/10000 > 0 ? val/10000 : 0
+      } else {
+        return ''
+      }
+
+    }
+
   },
   mounted() {
     this.windowWidth = window.innerWidth;
     let size = document.getElementsByTagName('html')[0].style.fontSize;
     size = size.replace(/px/, '')
     this.windowSize = size
+    this.getList()
+    console.log(this.areaList.city_list)
+
 
   },
   methods: {
+    // 提交e
+    goToPay(e) { 
+      console.log('22')
+      this.callTokenLostToApp()     
+    },
+     // 通知客户端，token失效
+    callTokenLostToApp(){
+        let boswer = vm.config.getBrowser()
+        if(boswer == 'isiOS'){
+            window.webkit.messageHandlers.tokenExpiredTransmit.postMessage(1);
+        }else if(boswer == 'isAndroid'){
+            window.tokenExpiredTransmit.jsMethod(1)
+        }
+    },
+    findKey(value, obj, compare = (a, b) => a === b) {
+      return Object.keys(obj).find(k => compare(obj[k], value))
+    },
+    async getList() {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 0
+      });
+      await getVideoDetail({ id: '5285890796667689016' }).then(ret => {
+      
+        console.log(ret.data.data)
+        this.userDetail = ret.data.data
+        if (this.userDetail.city) {
+          let result = this.findKey(this.userDetail.city, this.areaList.city_list);
+          this.cityValue = result
+        }
+
+      })
+      await extendPutMoney({
+        kbNum: 0 ,
+        putMoney: 200
+      }).then(ret => {
+        console.log(ret)
+        this.numDetail = ret.data.data
+
+      })
+      this.$toast.clear();
+
+     
+
+    },
+    async getExtendPutMoney() {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 0
+      });
+      await extendPutMoney({
+        kbNum: 0 ,
+        putMoney: this.putMoney
+      }).then(ret => {
+        console.log(ret)
+        this.numDetail = ret.data.data
+
+      })
+      this.$toast.clear();
+
+
+    },
     areaCancel() {
       this.isCity = false
 
     },
-    areaConfirm() {
+    areaConfirm(ev) {
       this.isCity = false
-
-
+      this.userDetail.city = ev[1].name
     },
     changeMoney(val) {
       this.moneyIndex = val;
+     
+      console.log( this.moneyList[val].num)
+      let num = this.moneyList[val].num
+      this.putMoney = num ? num : 0;
+      this.getExtendPutMoney()
 
     },
 

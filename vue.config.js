@@ -1,10 +1,11 @@
+// import {baseURL} from '@/src/lib/env'
 const path = require('path');
 
 function resolve(dir) {
   return path.join(__dirname, dir) //path.join(__dirname)设置绝对路径
 }
 
-const url = 'http://192.168.1.1';
+const url = 'http://114.55.168.93:8088/';
 
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
   devServer: {
     port: 8070,
     proxy: {
-      'api/': {
+      'video-service/': {
         target: url,
         changeOrigin: true,
       },
