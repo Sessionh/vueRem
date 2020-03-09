@@ -121,7 +121,7 @@
         </div>
       </div>
       <div class="pay-but" @click="goToPay">去支付</div>
-      <div class="pay-but" @click="goToPay1">去1</div>
+     
     </div>
 
     <div
@@ -213,22 +213,10 @@ export default {
   },
   methods: {
     // 提交e
-    goToPay(e) { 
-      console.log('22', e)
-      this.appMessage(1)   
+    goToPay(e) {     
+      this.appMessage()   
     },
-    goToPay1() {
-      window.AndroidObj
-      console.log('AndroidObj:', JSON.stringify(window.AndroidObj) )
-      if( window.AndroidObj) {
-         window.AndroidObj.test()
-      }
-       console.log('android:', JSON.stringify(window.android) )
-      if(window.android) {
-        window.android.test();
-      }
-
-    },
+   
      // 通知客户端，token失效
     callTokenLostToApp(){
         let boswer = vm.config.getBrowser()
@@ -244,11 +232,13 @@ export default {
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器   
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端 
         if (isAndroid) {
-            window.android.test();
+          // window.android.test();
+          JavaScriptClient.goToPay();
         } else if (isiOS) {
             window.webkit.messageHandlers.AppModel.postMessage({
                 'str': str
             });
+            // Window.webkit.messageHandlers.callPhone.postMessage(['电话咨询'])
         }
     },
 
