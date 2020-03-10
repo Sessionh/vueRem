@@ -213,27 +213,20 @@ export default {
   },
   methods: {
     // 提交e
-    goToPay(e) {     
-      this.appMessage()   
+    goToPay() {     
+      this.appMessage({id: '823929392', money: 300})   
     },
    
      // 通知客户端，token失效
-    callTokenLostToApp(){
-        let boswer = vm.config.getBrowser()
-        if(boswer == 'isiOS'){
-            window.webkit.messageHandlers.tokenExpiredTransmit.postMessage(1);
-        }else if(boswer == 'isAndroid'){
-            window.tokenExpiredTransmit.jsMethod(1)
-        }
-    },
+   
     appMessage(str) {
-        str = parseInt(str);
+      
         var u = navigator.userAgent;
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器   
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端 
         if (isAndroid) {
           // window.android.test();
-          JavaScriptClient.goToPay();
+          JavaScriptClient.goToPay(str);
         } else if (isiOS) {
             window.webkit.messageHandlers.AppModel.postMessage({
                 'str': str
@@ -268,7 +261,6 @@ export default {
       }).then(ret => {
         console.log(ret)
         this.numDetail = ret.data.data
-
       })
       this.$toast.clear();
 

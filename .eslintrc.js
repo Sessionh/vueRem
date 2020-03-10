@@ -15,6 +15,6 @@ module.exports = {
     parser: 'babel-eslint'
   },
   "globals": {
-    "vm": true
+    "JavaScriptClient": true
   }
 }
