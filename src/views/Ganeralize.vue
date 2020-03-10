@@ -257,7 +257,7 @@ export default {
       })
       await extendPutMoney({
         kbNum: 0 ,
-        putMoney: 200
+        putMoney: this.putMoney
       }).then(ret => {
         console.log(ret)
         this.numDetail = ret.data.data
