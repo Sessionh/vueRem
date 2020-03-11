@@ -104,6 +104,15 @@ const routes = [
     },
     component:  addUrl('InviteFriends')
   },
+  {
+    path: '/appDownload',
+    name: 'appDownload',
+    meta: {
+      showHeader: true,
+      title: '下载'
+    },
+    component:  addUrl('appDownload')
+  },
 
   
 

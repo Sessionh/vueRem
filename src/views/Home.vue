@@ -46,12 +46,20 @@
           任务红包
         </div>
 
-         <div
+        <div
           class="item"
           @click="detail('/inviteFriends')"
         >
           邀请有奖
         </div>
+
+        <div
+          class="item"
+          @click="detail('/appDownload')"
+        >
+          APP下载页
+        </div>
+        
         
         
 
