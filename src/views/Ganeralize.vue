@@ -162,7 +162,7 @@ export default {
       startX: 0,
       windowWidth: '',
       windowSize: '',
-      countNum: 0.05,
+      countNum: 100,
       nowNum: '0',
       moneyIndex: 0,
       moneyList: [
@@ -306,7 +306,7 @@ export default {
     touchmove(ev) {
 
       let pageX = ev.changedTouches[0].pageX;
-      let resultProNum = Number(pageX / this.windowWidth * 100).toFixed(0);
+      let resultProNum = Number(pageX / this.windowWidth * 100).toFixed(2);
       // console.log(curNum)
       if (Number(resultProNum) < 0) {
         this.progressNum = 0
